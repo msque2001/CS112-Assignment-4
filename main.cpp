@@ -1,12 +1,19 @@
 #include <iostream>
 using namespace std;
 
+class StringManip
+{
+    public:
+        ~StringManip()
+        {
+            cout << "Destructor Called!";
+        }
+        
+};
+
 int main()
 {
-    cout << "Hello, this is Saaim";
-    cout << "Hello, this is Muwahid";
-    cout << "Do you see this Saaim";
-    cout << "Hello, this is Mujahid";
-    cout << "Saaim agr yeh parha to tum gaandu";
+    StringManip obj1;
+
     return 0;
 }
