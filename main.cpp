@@ -1,5 +1,4 @@
 #include <iostream>
-#include<string>
 using namespace std;
 
 class StringManip
@@ -18,7 +17,9 @@ class StringManip
         array_size++;
 
       theString = new char[array_size];
-      strcpy(theString, s1);
+      
+      for(int i = 0; i < array_size; i++)
+        theString[i] = s1[i];
     }
 
     StringManip(int string_size)
@@ -35,7 +36,7 @@ class StringManip
 
 int main()
 {
-  char myArr[] = "Saaim";
+  char myArr[] = "Saaim Qureshi";
   StringManip obj(myArr);
   return 0;
 }
