@@ -18,7 +18,7 @@ class StringManip
         array_size++;
 
       theString = new char[array_size];
-      theString = s1;
+      strcpy(theString, s1);
     }
 
     StringManip(int string_size)
@@ -35,7 +35,7 @@ class StringManip
 
 int main()
 {
-    char myArr[] = "Saaim";
-    StringManip obj(myArr);
-    return 0;
+  char myArr[] = "Saaim";
+  StringManip obj(myArr);
+  return 0;
 }
