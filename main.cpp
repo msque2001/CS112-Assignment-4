@@ -4,32 +4,30 @@ using namespace std;
 
 class StringManip
 {
-private:
-    char* array[50];
-    int size = 0;
-    string s = " ";
-public:
-    StringManip()
-    {
-        size = 50;
+  char* array[50];
+  int size = 0;
+  string s = " ";
+  public:
+      StringManip()
+      {
+          size = 50;
 
-    }
-    StringManip(string s1)
-    {
-        s = s1;
+      }
+      StringManip(string s1)
+      {
+          s = s1;
 
-    }
-    StringManip(int a)
-    {
-        size = a;
-        char* arr = new char[size];
+      }
+      StringManip(int a)
+      {
+          size = a;
+          char* arr = new char[size];
 
-    }
-    ~StringManip()
-    {
-        cout << "Destructor Called!";
-    }
-
+      }
+        ~StringManip()
+        {
+            cout << "Destructor Called!";
+        }
 };
 
 int main()
@@ -47,9 +45,6 @@ int main()
     cout << "\nEnter array size:     ";
     cin.ignore();
     StringManip obj3(int a);
-
-
-
 
     return 0;
 }
