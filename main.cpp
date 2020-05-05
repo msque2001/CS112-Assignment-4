@@ -4,47 +4,38 @@ using namespace std;
 
 class StringManip
 {
-  char* array[50];
-  int size = 0;
-  string s = " ";
+  char *theString;
+  int array_size = 0;
   public:
-      StringManip()
+    StringManip()
       {
-          size = 50;
-
+          theString = new char[50];
       }
-      StringManip(string s1)
+
+      StringManip(char s1[])
       {
-          s = s1;
+        while(s1[array_size] != '\0')
+            array_size++;
 
+        theString = new char[array_size];
+        theString = s1;
       }
-      StringManip(int a)
+
+      StringManip(int string_size)
       {
-          size = a;
-          char* arr = new char[size];
-
+          array_size = string_size;
+          theString = new char[array_size];
       }
-        ~StringManip()
-        {
-            cout << "Destructor Called!";
-        }
+
+    ~StringManip()
+    {
+       delete this;
+    }
 };
 
 int main()
 {
-    int a = 0;
-    string  s1;
-    StringManip obj1;
-
-
-    cout << "\nEnter string:    ";
-    getline(cin, s1);
-    StringManip obj2(string s1);
-
-
-    cout << "\nEnter array size:     ";
-    cin.ignore();
-    StringManip obj3(int a);
-
+    char myArr[] = "Saaim";
+    StringManip obj(myArr);
     return 0;
 }
