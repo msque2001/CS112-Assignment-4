@@ -40,6 +40,7 @@ class StringManip
 
     ~StringManip()
     {
+      theString = NULL;
       delete[] theString;
     }
 
@@ -69,6 +70,8 @@ class StringManip
 
         for(int i = current_string_size, j = 0; i < required_array_size && j < other_string_size; i++, j++)
           theString[i] = other_string.theString[j];
+
+        array_size = required_array_size; // UPDATING array_size
       }
 
       else // TEST THIS LATER!!!!!!!!!!
@@ -79,12 +82,83 @@ class StringManip
       
       
     }
+
+    bool operator!=(const StringManip &other_string)
+    {
+      int index = 0;
+
+      while((theString[index] == other_string.theString[index]) && (theString[index] != '\0' || other_string.theString[index] != '\0'))
+      {
+        index++;
+
+        if(theString[index] == '\0' && other_string.theString[index] == '\0')
+          return false;
+      }
+
+      return true;
+    }
+
+    bool operator<(const StringManip &other_string)
+    {
+      string this_temp = theString, other_string_temp = other_string.theString;
+      if(this_temp < other_string_temp)
+        return true;
+      return false;
+    }
+
+    StringManip operator()(int start, int end)
+    {
+      int string_size = stringSize(theString);
+      StringManip temp(string_size);
+      
+      for(int i = start, j = 0; i <= end && j < string_size; i++, j++)
+      {
+        temp.theString[j] = theString[i]; 
+      }
+
+      return temp;
+    }
+
+    StringManip operator<<(int numOfShifts) // LEFT SHIFT
+    {
+      StringManip temp(numOfShifts);
+      
+      for(int i = 0; i < numOfShifts; i++)
+      {
+        temp.theString[i] = theString[i];
+      }
+      
+      int counter = 1;
+      while(counter <= numOfShifts)
+      {
+        for(int i = 0; theString[i] != '\0'; i++)
+        {
+            if(theString[i + 1] == '\0')
+              theString[i] = '\0';
+
+            else
+              theString[i] = theString[i + 1];
+        }
+        counter++;
+      }
+
+      return temp;
+    }
+
+    friend ostream &operator<<(ostream &output, const StringManip &the_string); // COUT
+
 };
+
+ostream &operator<<(ostream &output, const StringManip &req_string)
+{
+  return output << req_string.theString;
+}
 
 int main()
 {
-  char myArr[] = "Saaim", other[] = " Qureshi";
-  StringManip obj(myArr), x(other);
+  char myArr[] = "ABCDEFG", other[] = "I am";
+  string z = "msq", y = "Saaim";
+  StringManip obj(myArr), x(other), another;
 
   return 0;
 }
