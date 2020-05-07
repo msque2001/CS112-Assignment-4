@@ -18,7 +18,8 @@ class StringManip
   public:
     StringManip()
       {
-        theString = new char[50];
+        array_size = 50;
+        theString = new char[array_size];
       }
 
     StringManip(char s1[])
@@ -183,34 +184,10 @@ class StringManip
 
         return temp;
     }
-    char operator[](int position)
+
+    char &operator[](int position)
     {
-        int choice = 0;
-        cout << "\nPress 1 to get individual character. \nPress 2 to set individual character\n";
-        cin >> choice;
-
-        if (choice == 1)
-        {
-            cout << " Char you wanted: ";
-            return theString[position];
-
-        }
-        else if (choice == 2)
-        {
-            char new_value;
-            cout << "\nEnter new value: ";
-            cin >> new_value;
-
-            cout << "Character set from  " << theString[position] << "   to  ";
-            theString[position] = new_value;
-            return new_value;
-        }
-        else
-        {
-
-            cout << "invalid option";
-            return 0;
-        }
+        return theString[position];
     }
 
     bool operator== (StringManip& S)
@@ -228,13 +205,11 @@ class StringManip
                     equality_found++;
                     if (equality_found == array_size)
                     {
-                        cout << "\n Equality found";
                         return true;
                     }
                 }
                 else
                 {
-                    cout << "\n Equality not found";
                     return false;
                 }
             }
@@ -244,23 +219,19 @@ class StringManip
 
         else
         {
-
-            cout << "\n Equality not found";
             return false;
-
         }
     }
 
     bool operator>(const StringManip& other_string)
     {
         string this_temp = theString, other_string_temp = other_string.theString;
+
         if (this_temp > other_string_temp)
         {
-            cout << "\nobj is greater than obj2";
-
             return true;
         }
-        cout << "\nobj is not greater than obj2";
+
         return false;
     }
 
@@ -308,15 +279,13 @@ ostream &operator<<(ostream &output, const StringManip &req_string)
 }
 istream& operator>>(istream& input, const StringManip& input_string)
 {
-
-    cout << "\nEnter String:  ";
-
-
+/*
     for (int i = 0;i < input_string.array_size;i++)
     {
         input >> input_string.theString[i];
+    } */
 
-    }
+    input >> input_string.theString;
 
     return input;
 
@@ -326,6 +295,16 @@ int main()
   char myArr[] = "ABCDEFG", other[] = "I am";
   string z = "msq", y = "Saaim";
   StringManip obj(myArr), x(other), another;
+
+  another = obj >> 1;
+
+  cout << "obj: " << obj << endl;
+  cout << "another: " << another << endl;
+
+  another = obj >> 3;
+  cout << "obj: " << obj << endl;
+  cout << "another: " << another << endl;
+
 
   return 0;
 }
