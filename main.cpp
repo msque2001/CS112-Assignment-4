@@ -144,16 +144,183 @@ class StringManip
 
       return temp;
     }
+    void printArray()
+    {
+        cout << endl;
+        for (int i = 0;i < array_size;i++)
+        {
+
+            cout << theString[i];
+
+        }
+
+    }
+    int getsize_of_Array()
+    {
+
+
+        return array_size;
+
+    }
+
+    StringManip operator+(StringManip& S)
+    {
+        StringManip temp(array_size + S.array_size);
+
+        for (int i = 0;i < array_size;i++)
+        {
+
+            temp.theString[i] = theString[i];
+
+        }
+        for (int j = array_size, i = 0;j < array_size + S.array_size;j++, i++)
+        {
+
+            temp.theString[j] = S.theString[i];
+
+        }
+
+
+        return temp;
+    }
+    char operator[](int position)
+    {
+        int choice = 0;
+        cout << "\nPress 1 to get individual character. \nPress 2 to set individual character\n";
+        cin >> choice;
+
+        if (choice == 1)
+        {
+            cout << " Char you wanted: ";
+            return theString[position];
+
+        }
+        else if (choice == 2)
+        {
+            char new_value;
+            cout << "\nEnter new value: ";
+            cin >> new_value;
+
+            cout << "Character set from  " << theString[position] << "   to  ";
+            theString[position] = new_value;
+            return new_value;
+        }
+        else
+        {
+
+            cout << "invalid option";
+            return 0;
+        }
+    }
+
+    bool operator== (StringManip& S)
+    {
+
+
+
+        if (array_size == S.array_size)
+        {
+            int equality_found = 0;
+            for (int i = 0; i < array_size; i++)
+            {
+                if (theString[i] == S.theString[i])
+                {
+                    equality_found++;
+                    if (equality_found == array_size)
+                    {
+                        cout << "\n Equality found";
+                        return true;
+                    }
+                }
+                else
+                {
+                    cout << "\n Equality not found";
+                    return false;
+                }
+            }
+
+        }
+
+
+        else
+        {
+
+            cout << "\n Equality not found";
+            return false;
+
+        }
+    }
+
+    bool operator>(const StringManip& other_string)
+    {
+        string this_temp = theString, other_string_temp = other_string.theString;
+        if (this_temp > other_string_temp)
+        {
+            cout << "\nobj is greater than obj2";
+
+            return true;
+        }
+        cout << "\nobj is not greater than obj2";
+        return false;
+    }
+
+    
+
+    StringManip operator>> (int rightShift)   //Right shift
+    {
+        StringManip temp(array_size + rightShift);
+        for (int i = 0;i < rightShift;i++)
+        {
+            temp.theString[i] = '0';
+
+        }
+
+        for (int i = 0;i < array_size;i++)
+        {
+
+            temp.theString[i + rightShift] = theString[i];
+
+        }
+
+        int j = 0, k = rightShift;
+        for (int i = array_size;i < (array_size + rightShift);i++, j++)
+
+        {
+            theString[j] = temp.theString[i];
+
+        }
+        for (int i = rightShift;i < array_size + rightShift;i++, k++)
+        {
+            theString[k] = temp.theString[i];
+
+        }
+
+        return temp;
+    }
 
     friend ostream &operator<<(ostream &output, const StringManip &the_string); // COUT
-
+    friend istream& operator>> (istream& input, const StringManip& input_string);// CIN
 };
 
 ostream &operator<<(ostream &output, const StringManip &req_string)
 {
   return output << req_string.theString;
 }
+istream& operator>>(istream& input, const StringManip& input_string)
+{
 
+    cout << "\nEnter String:  ";
+
+
+    for (int i = 0;i < input_string.array_size;i++)
+    {
+        input >> input_string.theString[i];
+
+    }
+
+    return input;
+
+}
 int main()
 {
   char myArr[] = "ABCDEFG", other[] = "I am";
