@@ -28,6 +28,7 @@ public:
         while (s1[array_size] != '\0')
             array_size++;
 
+        array_size++;
         theString = new char[array_size]; // CHANGE
 
         for (int i = 0; i < array_size; i++)
@@ -36,7 +37,7 @@ public:
 
     StringManip(int string_size)
     {
-        array_size = string_size;
+        array_size = string_size + 1;
         theString = new char[array_size];
     }
 
@@ -76,7 +77,7 @@ public:
             array_size = required_array_size; // UPDATING array_size
         }
 
-        else // TEST THIS LATER!!!!!!!!!!
+        else
         {
             for (int i = current_string_size, j = 0; i < array_size && j < other_string_size; i++, j++)
                 theString[i] = other_string.theString[j];
@@ -277,18 +278,108 @@ istream& operator>>(istream& input, const StringManip& input_string)
 }
 int main()
 {
-    char myArr[] = "ABCDEFG", other[] = "I am";
-    string z = "msq", y = "Saaim";
-    StringManip obj(myArr), x(other), another;
+    // TEST HERE
+    char temp[] = "ABCDEFG";
+    StringManip string_two(temp), string_three;
 
-    another = obj >> 1;
+    string_three = string_two >> 1;
 
-    cout << "obj: " << obj << endl;
-    cout << "another: " << another << endl;
+    cout << "string_two: " << string_two << endl;
+    cout << "string_three: " << string_three << endl;
 
-    another = obj >> 3;
-    cout << "obj: " << obj << endl;
-    cout << "another: " << another << endl;
+    string_three = string_two >> 3;
+    cout << "string_two: "<< string_two << endl;
+    cout << "string_three: " << string_three << endl; 
+
+
+    /*
+    char array_one[] = "HELLO", array_two[] = "MAN123";
+    StringManip string_one(array_one), string_two(10), string_three;
+
+    cout << "array_size of string_one: " << string_one.getsize_of_Array() << endl;
+    cout << "array_size of string_two: " << string_two.getsize_of_Array() << endl;
+    cout << "array_size of string_three: " << string_three.getsize_of_Array() << endl << endl;
+
+    cout << "Enter string with >> for string_two: ";
+    cin >> string_two, cout << endl;
+    cout << "string_two: " << string_two << endl << endl;
+
+    cout << "Enter string with >> for string_three: ";
+    cin >> string_three, cout << endl;
+    cout << "string_three: " << string_three << endl << endl;
+
+    cout << "value output using << of string_one: " << string_one << '\t';
+    cout << "string_size of string_one: " << string_one.getStringSize() << endl;
+
+    cout << "value output using << of string_two: " << string_two << '\t';
+    cout << "string_size of string_two: " << string_two.getStringSize() << endl;
+
+    cout << "value output using << of string_three: " << string_three << '\t';
+    cout << "string_size of string_three: " << string_three.getStringSize() << endl << endl;
+
+    // + operator -----------------------------------------------------------------------------------------------
+
+    cout << "string_one before string_one += string_three: " << string_one << endl;
+    cout << "string_three before string_one += string_three: " << string_three << endl;
+    string_one+=string_three;
+    cout << "string_one after string_one += string_three: " << string_one << endl;
+    cout << "string_three after string_one += string_three: " << string_three << endl << endl;
+
+    // [] operator -----------------------------------------------------------------------------------------------
+
+    // == operator -----------------------------------------------------------------------------------------------
+
+    cout << "string_one: " << string_one << '\t';
+    cout << "string_two: " << string_two << endl;
+    if(string_one != string_two)
+        cout << "string_one != string_two: '" << string_one << "' is not equal to '" << string_two << "'\n" << endl;
+    else
+        cout << "string_one != string_two: '" << string_one << "' is equal to '" << string_two << "'\n" << endl;
+    
+
+    cout << "string_two: " << string_two << '\t';
+    cout << "string_three: " << string_three << endl;
+    if(string_two > string_three)
+        cout << "string_two > string_three: '" << string_two << "' is greater than '" << string_three << "'\n" << endl;
+    else
+        cout << "string_two > string_three: '" << string_two << "' is NOT greater than '" << string_three << "'\n" << endl;
+
+
+    cout << "string_two: " << string_two << '\t';
+    cout << "string_three: " << string_three << endl;
+    if(string_two < string_three)
+        cout << "string_two < string_three: '" << string_two << "' is less than '" << string_three << "'\n" << endl;
+    else
+        cout << "string_two < string_three: '" << string_two << "' is NOT less than '" << string_three << "'\n" << endl;
+
+
+    cout << "string_one: " << string_one << '\t';
+    cout << "string_three: " << string_three << endl;
+    string_three = string_one(0,4);
+    cout << "After string_three = string_one(0,4): \n";
+    cout << "string_one: " << string_one << '\t';
+    cout << "string_three: " << string_three << endl << endl;
+
+    cout << "string_two: " << string_two << '\t';
+    cout << "string_three: " << string_three << endl;
+    string_two = string_three;
+    cout << "After string_two = string_three: \n";
+    cout << "string_two: " << string_two << '\t';
+    cout << "string_three: " << string_three << endl << endl;
+
+    cout << "string_one: " << string_one << '\t';
+    cout << "string_three: " << string_three << endl;
+    string_three = string_one << 1;
+    cout << "After string_three = string_one << 1: \n";
+    cout << "string_one: " << string_one << '\t';
+    cout << "string_three: " << string_three << endl << endl;
+
+    cout << "string_one: " << string_one << '\t';
+    cout << "string_three: " << string_three << endl;
+    string_three = string_one << 3;
+    cout << "After string_three = string_one << 3: \n";
+    cout << "string_one: " << string_one << '\t';
+    cout << "string_three: " << string_three << endl << endl; */
 
 
     return 0;
