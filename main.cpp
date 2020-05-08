@@ -22,6 +22,7 @@ public:
         theString = new char[array_size];
     }
 
+
     StringManip(char s1[])
     {
         while (s1[array_size] != '\0')
@@ -185,7 +186,8 @@ public:
         return temp;
     }
 
-    char& operator[](int position)
+
+    char &operator[](int position)
     {
         return theString[position];
     }
@@ -261,11 +263,12 @@ ostream& operator<<(ostream& output, const StringManip& req_string)
 }
 istream& operator>>(istream& input, const StringManip& input_string)
 {
-    /*
-        for (int i = 0;i < input_string.array_size;i++)
-        {
-            input >> input_string.theString[i];
-        } */
+
+/*
+    for (int i = 0;i < input_string.array_size;i++)
+    {
+        input >> input_string.theString[i];
+    } */
 
     input >> input_string.theString;
 
