@@ -28,7 +28,6 @@ public:
         while (s1[array_size] != '\0')
             array_size++;
 
-        array_size++;
         theString = new char[array_size]; // CHANGE
 
         for (int i = 0; i < array_size; i++)
@@ -37,7 +36,7 @@ public:
 
     StringManip(int string_size)
     {
-        array_size = string_size + 1;
+        array_size = string_size;
         theString = new char[array_size];
     }
 
@@ -244,11 +243,18 @@ public:
     {
         StringManip temp(x);
         int c = 0;
-        for (int i = 0;i < x;i++)
+        for (int i = 0; i < x;i++)
         {
             temp.theString[c] = theString[array_size - 1 - i];
             c++;
         }
+
+
+        for (int i = 0; i < x; i++)
+        {
+            theString[array_size - 1 - i] = '\0';
+        }
+
 
         array_size = array_size - x;
         return temp;
