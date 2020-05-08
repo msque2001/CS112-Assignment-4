@@ -28,6 +28,7 @@ public:
         while (s1[array_size] != '\0')
             array_size++;
 
+        array_size++;
         theString = new char[array_size]; // CHANGE
 
         for (int i = 0; i < array_size; i++)
@@ -36,7 +37,7 @@ public:
 
     StringManip(int string_size)
     {
-        array_size = string_size;
+        array_size = string_size + 1;
         theString = new char[array_size];
     }
 
@@ -60,7 +61,7 @@ public:
 
         if (required_array_size > array_size)
         {
-            char temp[current_string_size];
+            char *temp = new char[current_string_size];
 
             for (int i = 0; i < current_string_size; i++)
                 temp[i] = theString[i];
@@ -74,6 +75,7 @@ public:
                 theString[i] = other_string.theString[j];
 
             array_size = required_array_size; // UPDATING array_size
+            delete[] temp;
         }
 
         else
@@ -245,14 +247,14 @@ public:
         int c = 0;
         for (int i = 0; i < x;i++)
         {
-            temp.theString[c] = theString[array_size - 1 - i];
+            temp.theString[c] = theString[array_size - 2 - i];
             c++;
         }
 
 
         for (int i = 0; i < x; i++)
         {
-            theString[array_size - 1 - i] = '\0';
+            theString[array_size - 2 - i] = '\0';
         }
 
 
@@ -284,6 +286,7 @@ istream& operator>>(istream& input, const StringManip& input_string)
 }
 int main()
 {
+    
     // TEST HERE
     char temp[] = "ABCDEFG";
     StringManip string_two(temp), string_three;
@@ -295,7 +298,7 @@ int main()
 
     string_three = string_two >> 3;
     cout << "string_two: "<< string_two << endl;
-    cout << "string_three: " << string_three << endl; 
+    cout << "string_three: " << string_three << endl;
 
 
     /*
