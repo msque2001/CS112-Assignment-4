@@ -350,14 +350,14 @@ int main()
 
     // OVERLOADED OPERATOR ([])
     char d = string_one[3];
-    cout << "After d = string_one[4]";
-    cout << "string_one = " << string_one << '\t' << "d = " << d << " after" << endl;
+    cout << "After d = string_one[4]  ===> ";
+    cout << "string_one = " << string_one << " & " << "d = " << d << endl;
     string_one[0] = 'J';
-    cout << "After string_one[0] = 'J'\n";
+    cout << "After string_one[0] = 'J'  ===> ";
     cout << "string_one = " << string_one << endl << endl;
 
     // OVERLOADED OPERATOR (==)
-    cout << "string_three: " << string_three << '\t';
+    cout << "string_one: " << string_one << '\t';
     cout << "string_two: " << string_two << endl;
     if(string_one == string_two)
         cout << "string_one == string_two: '" << string_one << "' is equal to '" << string_two << "'\n" << endl;
